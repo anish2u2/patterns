@@ -17,30 +17,74 @@ public class LinkedList<T> extends AbstractCollection<T> implements List<T> {
 
 	@Override
 	public T get(T object) {
-
+		Node<T> head = node;
+		for (; head != null; head = head.getNextNode()) {
+			if (object.equals(head.getData()))
+				return object;
+		}
 		return null;
 	}
 
 	@Override
 	public T get(int position) {
-
+		if (size() < position - 1) {
+			throw new IndexOutOfBoundsException("Position is greater then the limit of the linked list.");
+		}
+		Node<T> head = node;
+		for (int counter = 0; counter < position; counter++) {
+			if (counter == position - 1)
+				return head.getData();
+			head = head.getNextNode();
+		}
 		return null;
 	}
 
 	@Override
 	public void remove(T object) {
-
+		Node<T> head = node;
+		Node<T> prev = null;
+		for (; head != null; head = head.getNextNode()) {
+			if (object.equals(head.getData())) {
+				if (prev == null) {
+					node = head.getNextNode();
+				} else {
+					prev.setNextNode(head.getNextNode());
+					head.setNextNode(null);
+				}
+				decreamentSize();
+			}
+			prev = head;
+		}
 	}
 
 	@Override
 	public T remove(int position) {
-
-		return null;
+		if (size() < position - 1) {
+			throw new IndexOutOfBoundsException("Position is greater than the size of the Linked list.");
+		}
+		Node<T> temp = node;
+		Node<T> removableNode = null;
+		for (int counter = 0; counter < size(); counter++) {
+			if (counter + 1 == position - 1) {
+				removableNode = temp.getNextNode();
+				temp.setNextNode(temp.getNextNode().getNextNode());
+				decreamentSize();
+			}
+			temp = temp.getNextNode();
+		}
+		return removableNode.getData();
 	}
 
 	@Override
 	protected void clearData() {
-		
+		Node<T> temp = null;
+		for (int counter = 0; counter < size(); counter++) {
+			temp = node.getNextNode();
+			node.cleanUp();
+			node = temp;
+		}
+		node = null;
+		resetSize();
 	}
 
 	@Override

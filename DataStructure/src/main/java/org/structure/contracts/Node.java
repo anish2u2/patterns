@@ -15,8 +15,12 @@ public interface Node<T> {
 
 	public void setNextData(T data);
 
+	public void setNextNode(Node<T> node);
+
 	public Node<T> getNextNode();
 
 	public Node<T> getPrevNode();
+	
+	public void cleanUp();
 
 }

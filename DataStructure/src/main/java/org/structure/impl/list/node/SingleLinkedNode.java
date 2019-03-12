@@ -6,7 +6,7 @@ public class SingleLinkedNode<T> implements Node<T> {
 
 	private T data;
 
-	private SingleLinkedNode<T> nextNode;
+	private Node<T> nextNode;
 
 	public SingleLinkedNode() {
 
@@ -24,7 +24,7 @@ public class SingleLinkedNode<T> implements Node<T> {
 		this.data = data;
 	}
 
-	public SingleLinkedNode<T> getNextNode() {
+	public Node<T> getNextNode() {
 		return nextNode;
 	}
 
@@ -40,6 +40,18 @@ public class SingleLinkedNode<T> implements Node<T> {
 	@Override
 	public Node<T> getPrevNode() {
 		return null;
+	}
+
+	@Override
+	public void setNextNode(Node<T> node) {
+		this.nextNode = node;
+	}
+
+	@Override
+	public void cleanUp() {
+		this.data = null;
+		this.nextNode = null;
+
 	}
 
 }

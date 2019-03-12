@@ -36,4 +36,8 @@ public abstract class AbstractCollection<T> implements Collection<T> {
 	 */
 	protected abstract void clearData();
 
+	protected void resetSize() {
+		this.size = 0;
+	}
+
 }
