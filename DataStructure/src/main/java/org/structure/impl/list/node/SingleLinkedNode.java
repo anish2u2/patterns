@@ -2,6 +2,13 @@ package org.structure.impl.list.node;
 
 import org.structure.contracts.Node;
 
+/**
+ * This class represents the Single linked list representation for storing data.
+ * 
+ * @author Anish Singh
+ *
+ * @param <T>
+ */
 public class SingleLinkedNode<T> implements Node<T> {
 
 	private T data;

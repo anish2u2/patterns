@@ -2,7 +2,6 @@ package org.structure.factory;
 
 import java.util.logging.Logger;
 
-import org.structure.abstracts.list.node.SingleLinkedNode;
 import org.structure.contracts.Node;
 
 /**
@@ -21,7 +20,7 @@ public class NodeFactory<T> implements org.structure.contracts.NodeFactory<T> {
 	public Node<T> createNode(NodeType nodeType) {
 		logger.info("CHoosing type of node:" + nodeType);
 		if (NodeType.SINGLY.equals(nodeType)) {
-			return new SingleLinkedNode<T>();
+			return new org.structure.impl.list.node.SingleLinkedNode<T>();
 		} else if (NodeType.DOUBLY.equals(nodeType)) {
 			//
 		}

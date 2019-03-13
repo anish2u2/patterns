@@ -5,6 +5,13 @@ import org.structure.contracts.List;
 import org.structure.contracts.Node;
 import org.structure.factory.NodeFactory;
 
+/**
+ * This class represents an Linked list and it implements the behavior.
+ * 
+ * @author Anish Singh
+ *
+ * @param <T>
+ */
 public class LinkedList<T> extends AbstractCollection<T> implements List<T> {
 
 	private Node<T> node;
@@ -93,9 +100,10 @@ public class LinkedList<T> extends AbstractCollection<T> implements List<T> {
 			node.setData(data);
 		} else {
 			Node<T> temp = node;
-			for (int counter = 0; counter < size(); counter++) {
+			for (int counter = 0; counter < size() - 1; counter++) {
 				temp = temp.getNextNode();
 			}
+
 			temp.setNextData(data);
 		}
 		increamentSize();
@@ -104,6 +112,26 @@ public class LinkedList<T> extends AbstractCollection<T> implements List<T> {
 	@Override
 	public void add(T data, int position) {
 
+		if (position - 1 > size()) {
+			throw new IndexOutOfBoundsException("Size of the position is more than the structure size.");
+		}
+		if (position == 1) {
+			node.setNextData(data);
+			node.getNextNode().setNextNode(node);
+			Node<T> nextNode = node.getNextNode();
+			node.setNextNode(null);
+			node = nextNode;
+			increamentSize();
+			return;
+		}
+		Node<T> temp = node;
+		for (int counter = 0; counter < position - 2; counter++) {
+			temp = temp.getNextNode();
+		}
+		Node<T> nextNode = temp.getNextNode();
+		temp.setNextData(data);
+		temp.getNextNode().setNextNode(nextNode);
+		increamentSize();
 	}
 
 }
