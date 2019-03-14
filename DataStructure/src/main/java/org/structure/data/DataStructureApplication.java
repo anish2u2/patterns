@@ -11,7 +11,7 @@ import org.structure.impl.list.LinkedList;
 public class DataStructureApplication {
 
 	public static void main(String[] args) {
-		// SpringApplication.run(DataStructureApplication.class, args);
+		SpringApplication.run(DataStructureApplication.class, args);
 		Runtime runtime = Runtime.getRuntime();
 		System.out.println("Memory used:" + (runtime.totalMemory() - runtime.freeMemory()));
 		List<String> list = new LinkedList<String>();
