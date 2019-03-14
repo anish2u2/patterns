@@ -19,7 +19,7 @@ public interface Task {
 	 * 
 	 * @return
 	 */
-	public Long getStoryId();
+	//public Long getStoryId();
 
 	/**
 	 * This method will return the name of the task.

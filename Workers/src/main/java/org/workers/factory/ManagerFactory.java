@@ -36,6 +36,7 @@ public class ManagerFactory {
 					return o1.getPriority() == o2.getPriority() ? 0 : (o1.getPriority() < o2.getPriority() ? -1 : 1);
 				}
 			});
+			manager.startManging();
 		}
 		return manager;
 	}

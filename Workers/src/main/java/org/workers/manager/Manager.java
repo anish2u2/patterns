@@ -42,19 +42,13 @@ public class Manager extends AbstractManager {
 			}
 
 			@Override
-			public Long getStoryId() {
-
-				return 1L;
-			}
-
-			@Override
 			public void executeTask() {
 				try {
 					while (true) {
-						logger.info("Scheduling works.");
+						//logger.info("Scheduling works.");
 						schedule();
-						logger.info("Works has been scheduled.");
-						Thread.sleep(500);
+						//logger.info("Works has been scheduled.");
+						Thread.sleep(1000);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -78,8 +72,11 @@ public class Manager extends AbstractManager {
 		removeFinishWork();
 		if (getWorkersQueue().size() < DEFAULT_QUEUE_SIZE && getWorkersQueue().size() > 0) {
 			Story story = getReadyStory();
-			getWorkersQueue().add((WorkersGroup) getWorkersFactory().getWorker(story.getTask(),
-					new WorkersGroup(story.getStoryName())));
+			logger.info("Scheduling..");
+			WorkersGroup group = new WorkersGroup(story.getStoryName());
+			Worker worker = getWorkersFactory().getWorker(story.getTask(), group);
+			getWorkersQueue().add(group);
+			worker.doWork();
 		}
 	}
 
@@ -109,6 +106,12 @@ public class Manager extends AbstractManager {
 		schedulerWorker.terminateWork();
 		schedulerWorker = null;
 		super.finalize();
+	}
+
+	@Override
+	public void startManging() {
+		initiateScheduler();
+
 	}
 
 }

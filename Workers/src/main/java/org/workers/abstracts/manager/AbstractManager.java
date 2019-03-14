@@ -22,13 +22,9 @@ public abstract class AbstractManager implements Manager {
 
 	private Comparator<Story> comparator;
 
-	public AbstractManager() {
-		initiateScheduler();
-	}
-
 	@Override
 	public void inti() {
-		initiateScheduler();
+
 	}
 
 	@Override

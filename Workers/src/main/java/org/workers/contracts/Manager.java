@@ -38,7 +38,7 @@ public interface Manager extends Init, Destroy {
 	 * @param story
 	 * @param priority
 	 */
-	//public void assignStory(Story story, Priority priority);
+	// public void assignStory(Story story, Priority priority);
 
 	/**
 	 * This method will set the Sorting mechanism for sorting the request story.
@@ -46,4 +46,9 @@ public interface Manager extends Init, Destroy {
 	 * @param comparator
 	 */
 	public void setSortingMechanism(Comparator<Story> comparator);
+
+	/**
+	 * This method will start scheduling the works.It should invoke once.
+	 */
+	public void startManging();
 }
