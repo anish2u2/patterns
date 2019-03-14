@@ -45,9 +45,9 @@ public class Manager extends AbstractManager {
 			public void executeTask() {
 				try {
 					while (true) {
-						//logger.info("Scheduling works.");
+						// logger.info("Scheduling works.");
 						schedule();
-						//logger.info("Works has been scheduled.");
+						// logger.info("Works has been scheduled.");
 						Thread.sleep(1000);
 					}
 				} catch (Exception e) {
@@ -70,9 +70,11 @@ public class Manager extends AbstractManager {
 	 */
 	public void schedule() {
 		removeFinishWork();
-		if (getWorkersQueue().size() < DEFAULT_QUEUE_SIZE && getWorkersQueue().size() > 0) {
+		if (getWorkersQueue().size() < DEFAULT_QUEUE_SIZE) {
 			Story story = getReadyStory();
-			logger.info("Scheduling..");
+			if (story == null)
+				return;
+			// logger.info("Scheduling..");
 			WorkersGroup group = new WorkersGroup(story.getStoryName());
 			Worker worker = getWorkersFactory().getWorker(story.getTask(), group);
 			getWorkersQueue().add(group);

@@ -84,6 +84,6 @@ public abstract class AbstractManager implements Manager {
 	}
 
 	protected Story getReadyStory() {
-		return storyRequests.remove(1);
+		return storyRequests.size() > 0 ? storyRequests.remove(0) : null;
 	}
 }

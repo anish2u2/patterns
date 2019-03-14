@@ -10,7 +10,7 @@ import org.workers.factory.ManagerFactory;
 public class WorkersApplication {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(WorkersApplication.class, args);
+		SpringApplication.run(WorkersApplication.class, args);
 		ManagerFactory.getManager().assignStory(new Story() {
 
 			@Override
